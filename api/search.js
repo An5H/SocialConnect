@@ -3,18 +3,20 @@ const express = require("express");
 const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
 
-router.get("/searchText", authMiddleware, async (req, res) => {
+router.get("/:searchText", authMiddleware, async (req, res) => {
   const { searchText } = req.params;
+
+  console.log("results from API above null check -> "+searchText);
 
   if (searchText.length === 0) return;
 
   try {
-    let userPattern = new RegExp(`^${searchText}`);
 
     const results = await UserModel.find({
-      name: { $regex: userPattern, $options: "i" },
+      name: { $regex: searchText, $options: "i" },
     });
 
+    console.log("results from API -> "+results);
     res.json(results);
   } catch (error) {
     console.error(error);
