@@ -7,15 +7,13 @@ const bcrypt = require("bcryptjs");
 const isEmail = require("validator/lib/isEmail");
 const authMiddleware = require("../middleware/authMiddleware");
 
-
-router.get("/", authMiddleware, async(req, res) => {
-  const {userId} = req;
-  try{
-    const user= await UserModel.findById(userId);
-    const userFollowerStats = await FollowerModel.findOne({user: userId});
-    return res.status(200).json({user, userFollowerStats});
-
-  }catch(error){
+router.get("/", authMiddleware, async (req, res) => {
+  const { userId } = req;
+  try {
+    const user = await UserModel.findById(userId);
+    const userFollowerStats = await FollowerModel.findOne({ user: userId });
+    return res.status(200).json({ user, userFollowerStats });
+  } catch (error) {
     console.log(error);
     return res.status(401).send("Server error");
   }

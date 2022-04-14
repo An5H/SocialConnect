@@ -12,7 +12,6 @@ const regexUserName = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
 
 router.get("/:username", async (req, res) => {
   const { username } = req.params;
-  console.log("/username->", req.params);
   try {
     if (username.length < 1 || !regexUserName.test(username)) {
       return res.status(401).send("Invalid");

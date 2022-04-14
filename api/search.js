@@ -6,17 +6,13 @@ const router = express.Router();
 router.get("/:searchText", authMiddleware, async (req, res) => {
   const { searchText } = req.params;
 
-  console.log("results from API above null check -> "+searchText);
-
   if (searchText.length === 0) return;
 
   try {
-
     const results = await UserModel.find({
       name: { $regex: searchText, $options: "i" },
     });
 
-    console.log("results from API -> "+results);
     res.json(results);
   } catch (error) {
     console.error(error);
