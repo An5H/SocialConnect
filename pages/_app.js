@@ -3,6 +3,7 @@ import { parseCookies, destroyCookie } from "nookies";
 import baseUrl from "../utils/baseUrl";
 import { redirectUser } from "../utils/authUser";
 import Layout from "../components/Layout/Layout";
+import "react-toastify/dist/ReactToastify.css";
 import "semantic-ui-css/semantic.min.css";
 
 const MyApp = ({ Component, pageProps }) => {
@@ -27,8 +28,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 
   if (!token) {
     protectedRoutes && redirectUser(ctx, "/login");
-  } 
-  else {
+  } else {
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }

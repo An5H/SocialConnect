@@ -144,7 +144,7 @@ const CreatePost = ({ user, setPosts }) => {
         <Button
           circular
           disabled={newPost.text === "" || loading}
-          content={<stron>Post</stron>}
+          content={<strong>Post</strong>}
           style={{ backgroundColor: "#1DA1F2", color: "white" }}
           icon="send"
           loading={loading}

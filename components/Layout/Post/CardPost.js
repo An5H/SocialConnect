@@ -15,6 +15,7 @@ import PostComments from "./PostComments";
 import CommentInputField from "./CommentInputField";
 import Link from "next/link";
 import calculateTime from "../../../utils/calculateTime";
+import { deletePost, likePost } from "../../../utils/postActions";
 
 const CardPost = ({ post, user, setPosts, setShowToastr }) => {
   const [likes, setLikes] = useState(post.likes);
@@ -55,7 +56,7 @@ const CardPost = ({ post, user, setPosts, setShowToastr }) => {
                   position="top right"
                   trigger={
                     <Image
-                      src="./deleteIcon.svg"
+                      src="/deleteIcon.svg"
                       style={{ cursor: "pointer" }}
                       size="mini"
                       floated="right"
@@ -65,7 +66,14 @@ const CardPost = ({ post, user, setPosts, setShowToastr }) => {
                   <Header as="h4" content="Are you sure?" />
                   <p>This action is irreversible!</p>
 
-                  <Button color="red" icon="trash" content="Delete" />
+                  <Button
+                    color="red"
+                    icon="trash"
+                    content="Delete"
+                    onClick={() =>
+                      deletePost(post._id, setPosts, setShowToastr)
+                    }
+                  />
                 </Popup>
               </>
             )}
@@ -98,6 +106,9 @@ const CardPost = ({ post, user, setPosts, setShowToastr }) => {
               name={isLiked ? "heart" : "heart outline"}
               color="red"
               style={{ cursor: "pointer" }}
+              onClick={() =>
+                likePost(post._id, user._id, setLikes, isLiked ? false : true)
+              }
             />
 
             {likes.length > 0 && (

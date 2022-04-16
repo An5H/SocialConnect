@@ -25,3 +25,27 @@ export const submitNewPost = async (
     setError(errorMessage);
   }
 };
+
+export const deletePost = async (postId, setPosts, setShowToastr) => {
+  try {
+    await Axios.delete(`/${postId}`);
+    setPosts((prev) => prev.filter((post) => post._id !== postId));
+    setShowToastr(true);
+  } catch (error) {
+    alert(catchErrors(error));
+  }
+};
+
+export const likePost = async (postId, userId, setLikes, like = true) => {
+  try {
+    if (like) {
+      await Axios.post(`/like/${postId}`);
+      setLikes((prev) => [...prev, { user: userId }]);
+    } else {
+      await Axios.put(`/unlike/${postId}`);
+      setLikes((prev) => prev.filter((like) => like.user !== userId));
+    }
+  } catch (error) {
+    alert(catchErrors(error));
+  }
+};
