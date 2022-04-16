@@ -16,7 +16,6 @@ import CommentInputField from "./CommentInputField";
 import Link from "next/link";
 import calculateTime from "../../../utils/calculateTime";
 import { deletePost, likePost } from "../../../utils/postActions";
-
 const CardPost = ({ post, user, setPosts, setShowToastr }) => {
   const [likes, setLikes] = useState(post.likes);
 
@@ -55,11 +54,12 @@ const CardPost = ({ post, user, setPosts, setShowToastr }) => {
                   on="click"
                   position="top right"
                   trigger={
-                    <Image
-                      src="/deleteIcon.svg"
+                    <Button
+                      color="red"
                       style={{ cursor: "pointer" }}
                       size="mini"
                       floated="right"
+                      icon="trash"
                     />
                   }
                 >
