@@ -22,7 +22,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     ctx.pathname === "/" ||
     ctx.pathname === "/[username]" ||
     ctx.pathname === "/notifications" ||
-    ctx.pathname === "/post/[postid]" ||
+    ctx.pathname === "/post/[postId]" ||
     ctx.pathname === "/messages" ||
     ctx.pathname === "/search";
 
@@ -37,15 +37,16 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
         headers: { Authorization: token },
       });
 
-      const { user, userFollowerStats } = res.data;
+      const { user, userFollowStats } = res.data;
 
       if (user) {
         !protectedRoutes && redirectUser("/");
       }
 
       pageProps.user = user;
-      pageProps.userFollowerStats = userFollowerStats;
+      pageProps.userFollowStats = userFollowStats;
     } catch (error) {
+      console.log("Errored from here -> " + error);
       destroyCookie(ctx, "token");
       redirectUser(ctx, "/login");
     }

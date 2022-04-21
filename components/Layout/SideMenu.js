@@ -78,7 +78,7 @@ const SideMenu = ({
         </Link>
         <br />
 
-        <List.Item onClick={() => logoutUser()}>
+        <List.Item onClick={() => logoutUser(email)}>
           <Icon name="log out" size="large" />
           <List.Content>
             <List.Header content="Logout" />
