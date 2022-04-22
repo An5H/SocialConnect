@@ -54,7 +54,7 @@ router.get("/", authMiddleware, async (req, res) => {
         .populate("comments.user");
     } else {
       const skips = size * (number - 1);
-      posts = await PostModal.find()
+      posts = await PostModel.find()
         .skip(skips)
         .limit(size)
         .sort({ createdAt: -1 })

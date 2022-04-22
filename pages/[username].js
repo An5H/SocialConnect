@@ -36,15 +36,15 @@ const ProfilePage = ({
 
   const [activeItem, setActiveItem] = useState("profile");
 
-  const handleItemClick = (item) => {
-    setActiveItem(item);
-  };
-
   const [loggedUserFollowStats, setUserFollowStats] = useState(userFollowStats);
 
   const [showToastr, setShowToastr] = useState(false);
 
   const ownAccount = profile.user._id === user._id;
+
+  const handleItemClick = (item) => {
+    setActiveItem(item);
+  };
 
   if (errorLoading) return <NoProfile />;
 
