@@ -1,13 +1,6 @@
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Form,
-  Button,
-  Message,
-  Segment,
-  TextArea,
-  Divider,
-} from "semantic-ui-react";
+import { Form, Button, Message, Segment, Divider } from "semantic-ui-react";
 import {
   HeaderMessage,
   FooterMessage,

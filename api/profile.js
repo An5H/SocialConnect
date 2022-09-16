@@ -106,6 +106,7 @@ router.post("/follow/:userToFollowId", authMiddleware, async (req, res) => {
 
     if (!user || !userToFollow) return res.status(404).send(`User not found`);
 
+    //if user is already following the userToBeFollowed
     const isFollowing =
       user.following.length > 0 &&
       user.following.filter(
@@ -146,13 +147,13 @@ router.put("/unfollow/:userToUnfollowId", authMiddleware, async (req, res) => {
 
     if (!user || !userToUnfollow) return res.status(404).send(`User not found`);
 
-    const isFollowing =
+    const isNotFollowing =
       user.following.length > 0 &&
       user.following.filter(
         (following) => following.user.toString() === userToUnfollowId
       ).length === 0;
 
-    if (isFollowing) {
+    if (isNotFollowing) {
       return res.status(401).send("User not followed previously");
     }
 

@@ -19,6 +19,7 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
+//login
 router.post("/", async (req, res) => {
   const { email, password } = req.body.user;
 
